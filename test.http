@@ -1,4 +1,10 @@
-GET http://localhost:3000/api/register
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+  "email": "miemail@gmail.com",
+  "password": "fjkldajfj"
+}
 
 ###
 PUT http://localhost:3000/api/register

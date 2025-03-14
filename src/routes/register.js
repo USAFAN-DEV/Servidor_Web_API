@@ -1,9 +1,9 @@
 const express = require("express");
 const registerRouter = express.Router();
+const createUser = require("../controllers/users.js");
+const validatorUser = require("../validators/users.js");
 
-registerRouter.get("/", async (req, res) => {
-  console.log("\nHTTP method: GET, Route: /api/register");
-});
+registerRouter.post("/", validatorUser, createUser);
 
 registerRouter.put("/", async (req, res) => {
   console.log("\nHTTP method: PUT, Route: /api/register");
