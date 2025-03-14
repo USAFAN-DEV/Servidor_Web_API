@@ -1,0 +1,18 @@
+GET http://localhost:3000/api/register
+
+###
+PUT http://localhost:3000/api/register
+
+###
+PATCH http://localhost:3000/api/company
+
+###
+PATCH http://localhost:3000/api/logo
+
+###
+PUT http://localhost:3000/api/validation
+
+###
+POST http://localhost:3000/api/login
+
+###

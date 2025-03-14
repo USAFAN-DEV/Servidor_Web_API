@@ -1,6 +1,7 @@
 const mongoose = require("mongoose"); //Para trabajar con mongo
 
-const dbConnect = () => {
+const dbConnect = async () => {
+  //Asíncrona para poder catchear errores. mongoose.connect devuelve una promesa
   //Obtenemos la db_uri
   const db_uri = process.env.DB_URI;
   if (!db_uri) {
@@ -12,7 +13,8 @@ const dbConnect = () => {
 
   //Conexión a la base de datos
   try {
-    mongoose.connect(db_uri);
+    await mongoose.connect(db_uri);
+    console.log("Conectado a la base de datos");
   } catch (error) {
     console.error(
       "Error: No es posible conectarse a la base de datos:\n",

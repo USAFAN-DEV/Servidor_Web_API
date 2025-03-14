@@ -16,8 +16,8 @@ const dbConnect = require("./config/mongo.js");
 dbConnect();
 
 //Router
-//const router = require("./routes/index.js");
-//app.use("/", router);
+const router = require("./routes/index.js");
+app.use("/api", router);
 
 //Arranque de la app
 app.listen(port, () => {
