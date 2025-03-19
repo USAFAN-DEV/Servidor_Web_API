@@ -1,7 +1,7 @@
 const express = require("express");
 const validationRouter = express.Router();
-const send = require("../controllers/mail.js");
-const validationMail = require("../validators/mail.js");
+const send = require("../controllers/mailController.js");
+const validationMail = require("../validators/mailValidator.js");
 
 validationRouter.post("/", validationMail, send);
 

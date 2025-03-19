@@ -1,7 +1,7 @@
 const express = require("express");
 const registerRouter = express.Router();
-const createUser = require("../controllers/users.js");
-const validatorUser = require("../validators/users.js");
+const createUser = require("../controllers/usersController.js");
+const validatorUser = require("../validators/usersValidator.js");
 
 registerRouter.post("/", validatorUser, createUser);
 

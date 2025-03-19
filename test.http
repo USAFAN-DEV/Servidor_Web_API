@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "email": "miemail@gmail.com",
-  "password": "fjkldajfj"
+  "password": "12345689"
 }
 
 ###
@@ -22,8 +22,8 @@ Content-Type: application/json
 {
   "subject": "Test",
   "text": "Testeando la api de gmail",
-  "to":"bydartex@gmail.com",
-  "from":"nicolasgraullera@gmail.com"
+  "to":"x@gmail.com",
+  "from":"y@gmail.com"
 
 }
 
