@@ -20,20 +20,11 @@ const createUser = async (req, res) => {
     res.status(200).json(result);
   } catch (error) {
     if (error.code === 11000) {
-      console.error(
-        "HTTP method: POST, route: /api/register\n. Email repetido\n",
-        error
-      );
-      res
-        .status(400)
-        .send(
-          "El email introducido ya existe. Por favor, introduzca otro email"
-        );
+      //Email repetido
+      console.error("HTTP method: POST, route: /api/register\n. Email repetido\n", error);
+      res.status(409).send("El email introducido ya existe. Por favor, introduzca otro email");
     } else {
-      console.error(
-        "HTTP method: POST, route: /api/register\n. Error del servidor\n",
-        error
-      );
+      console.error("HTTP method: POST, route: /api/register\n. Error del servidor\n", error);
       res.status(500).send("Error del servidor");
     }
   }

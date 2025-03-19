@@ -1,8 +1,8 @@
 const express = require("express");
 const validationRouter = express.Router();
+const send = require("../controllers/mail.js");
+const validationMail = require("../validators/mail.js");
 
-validationRouter.put("/", async (req, res) => {
-  console.log("\nHTTP method: PUT, Route: /api/validation");
-});
+validationRouter.post("/", validationMail, send);
 
 module.exports = validationRouter;
