@@ -35,7 +35,7 @@ const createUser = async (req, res) => {
       res.status(409).send("El email introducido ya existe. Por favor, introduzca otro email");
     } else {
       console.error("HTTP method: POST, route: /api/register\n. Error del servidor\n", error);
-      res.status(500).send("Error del servidor");
+      res.status(500).send("Error del servidor al crear el usuario");
     }
   }
 };

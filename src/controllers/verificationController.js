@@ -154,7 +154,7 @@ const verifyUser = async (req, res) => {
     return res.status(200).json({ message: "Usuario verificado." });
   } catch (error) {
     // Si ocurre un error, lo capturamos y respondemos con un mensaje de error
-    console.error("Error al verificar al usuario:", error);
+    console.error("Error del servidor al verificar al usuario:", error);
     return res.status(500).json({ message: "Error del servidor." });
   }
 };

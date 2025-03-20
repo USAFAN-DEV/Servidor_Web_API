@@ -1,8 +1,9 @@
 const express = require("express");
 const loginRouter = express.Router();
 
-loginRouter.post("/", async (req, res) => {
-  console.log("\nHTTP method: POST, Route: /api/login");
-});
+const loginValidator = require("../validators/loginValidator.js");
+const login = require("../controllers/loginController.js");
+
+loginRouter.post("/", loginValidator, login);
 
 module.exports = loginRouter;
