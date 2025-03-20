@@ -1,9 +1,20 @@
-const userModel = require("../models/usersModel.js");
+//Express
 const { matchedData } = require("express-validator");
+//Modelos
+const userModel = require("../models/usersModel.js");
+//Utils
 const { encrypt } = require("../utils/handlePassword.js");
-const { createUserVerification } = require("../controllers/userVerificationController.js");
+const createUserVerification = require("../utils/handleVerification.js");
 
 const createUser = async (req, res) => {
+  /**
+   * Registra un nuevo usuario en la base de datos y genera un código de verificación para su correo electrónico.
+   *
+   * @param {Object} req - Objeto de solicitud HTTP (Request).
+   * @param {Object} res - Objeto de respuesta HTTP (Response).
+   * @returns {Promise<void>} - No devuelve ningún valor explícito, pero responde con el usuario creado o un error HTTP.
+   *
+   */
   try {
     const body = matchedData(req);
 
@@ -14,9 +25,8 @@ const createUser = async (req, res) => {
     const result = await userModel.create(body);
 
     //Creamos el userVerification
-    const code = await createUserVerification(body.email);
+    await createUserVerification(body.email);
 
-    console.log("Codigo a enviar por correo: ", code);
     res.status(200).json(result);
   } catch (error) {
     if (error.code === 11000) {

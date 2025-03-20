@@ -8,9 +8,7 @@ const validateResults = require("../utils/handleValidator");
  */
 const validatorCreateItem = [
   check("email").exists().isEmail(),
-  check("password").exists().isLength({ min: 8 }).withMessage("La contraseña debe tener al menos 8 caracteres"),
-  check("name").optional(),
-  check("surname").optional(),
+  check("code").exists().isLength({ min: 6, max: 6 }).withMessage("El código debe tener exactamente 6 caracteres"),
   (req, res, next) => validateResults(req, res, next),
 ];
 module.exports = validatorCreateItem;
