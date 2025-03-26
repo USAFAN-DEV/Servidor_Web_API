@@ -17,6 +17,7 @@ const UserVerificationSchema = new mongoose.Schema(
     email: {
       type: String,
       unique: true,
+      ref: "UserModel",
     },
     code: String,
     codeExpiresAt: Date,

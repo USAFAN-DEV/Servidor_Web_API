@@ -36,7 +36,6 @@ const createTransporter = async () => {
 
     return transporter;
   } catch (error) {
-    console.error("Error creating transporter:", error);
     throw new Error("Failed to create email transporter.");
   }
 };
@@ -44,17 +43,15 @@ const createTransporter = async () => {
 /**
  * Envía un correo electrónico utilizando el transporter configurado con OAuth2.
  *
- * Esta función se encarga de enviar el correo con el código de verificación u otro contenido especificado.
+ * Esta función se encarga de enviar un correo electrónico con el código de verificación u otro contenido especificado.
  *
- * @param {Object} emailOptions - Las opciones del correo, incluyendo el destinatario, asunto, cuerpo, etc.
- *    - Ejemplo de estructura:
- *      {
- *        subject: "Verificación de correo",
- *        text: "Tu código de verificación es: 123456"
- *        to: "usuario@example.com",
- *        from: "usario2@example.com"
- *      }
- * @returns {Promise<void>} - No devuelve nada, solo maneja el envío del correo.
+ * @param {Object} emailOptions - Opciones del correo, incluyendo el destinatario, asunto y contenido.
+ * @param {string} emailOptions.to - Dirección de correo del destinatario.
+ * @param {string} emailOptions.from - Dirección de correo del remitente.
+ * @param {string} emailOptions.subject - Asunto del correo.
+ * @param {string} emailOptions.text - Cuerpo del correo en texto plano.
+ *
+ * @returns {Promise<void>} - No devuelve nada
  */
 const send = async (emailOptions) => {
   try {
@@ -63,7 +60,8 @@ const send = async (emailOptions) => {
 
     console.log("Correo con el codigo de verificacion enviado a:", emailOptions.to);
   } catch (error) {
-    console.log("Error:", error);
+    console.error("\nError enviando el correo electronico:");
+    console.log("-".repeat(50) + "\n", error);
   }
 };
 

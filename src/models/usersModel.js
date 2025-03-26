@@ -16,6 +16,7 @@ const UserSchema = new mongoose.Schema(
   {
     name: String,
     surname: String,
+    nif: String,
     email: {
       type: String,
       unique: true,

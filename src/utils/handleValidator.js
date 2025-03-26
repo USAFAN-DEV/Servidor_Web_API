@@ -13,8 +13,9 @@ const validateResults = (req, res, next) => {
     validationResult(req).throw();
     return next();
   } catch (err) {
-    res.status(403);
-    res.send({ errors: err });
+    console.error("\nError validando los datos:");
+    console.log("-".repeat(50) + "\n", err);
+    res.status(403).send({ errors: err });
   }
 };
 

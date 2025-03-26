@@ -38,7 +38,8 @@ const createUserVerification = async (email) => {
 
     console.log("Codigo a enviar por correo: ", code);
   } catch (error) {
-    console.error("Error:", error);
+    console.error("\nError creando documento userVerification:");
+    console.log("-".repeat(50) + "\n", error);
   }
 };
 
