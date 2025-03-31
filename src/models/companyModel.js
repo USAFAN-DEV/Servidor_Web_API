@@ -17,7 +17,8 @@ const mongoose = require("mongoose");
  */
 const CompanySchema = new mongoose.Schema(
   {
-    email: [String],
+    boss: String,
+    employees: [String],
     company: {
       name: String,
       cif: {

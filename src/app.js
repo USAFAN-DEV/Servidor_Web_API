@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 const app = express(); //Instancia de express
 app.use(cors());
 app.use(express.json()); //Para poder recibir datos en formato JSON
-app.use("public", express.static("src/storage")); //"Sirve" los archivos guardados en src/storage en http://localhost:3000/public.
+app.use("/public", express.static("src/storage")); //"Sirve" los archivos guardados en src/storage en http://localhost:3000/public.
 
 // Manejo de errores JSON mal formateado, ocurren antes del validador
 app.use((err, req, res, next) => {

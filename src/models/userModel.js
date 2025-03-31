@@ -30,6 +30,10 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    logo_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "logos",
+    },
   },
   { timestamps: true, versionKey: false }
 );

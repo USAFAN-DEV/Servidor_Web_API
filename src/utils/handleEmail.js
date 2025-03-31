@@ -18,16 +18,19 @@ const createTransporter = async () => {
       refresh_token: process.env.REFRESH_TOKEN,
     });
 
-    // Obtener el Access Token de manera correcta
-    const accessToken = await oauth2Client.getAccessToken();
+    const accessTokenObj = await oauth2Client.getAccessToken();
+    const accessToken = accessTokenObj?.token;
 
-    // Crear el transporter con OAuth2
+    if (!accessToken) {
+      throw new Error("No se pudo obtener el Access Token.");
+    }
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         type: "OAuth2",
         user: process.env.EMAIL,
-        accessToken: accessToken.token, // Aquí corregimos el acceso al token
+        accessToken: accessToken,
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
         refreshToken: process.env.REFRESH_TOKEN,
@@ -36,7 +39,7 @@ const createTransporter = async () => {
 
     return transporter;
   } catch (error) {
-    throw new Error("Failed to create email transporter.");
+    throw new Error("Failed to create email transporter. Detalles: " + error.message);
   }
 };
 
@@ -57,8 +60,6 @@ const send = async (emailOptions) => {
   try {
     let emailTransporter = await createTransporter();
     await emailTransporter.sendMail(emailOptions);
-
-    console.log("Correo con el codigo de verificacion enviado a:", emailOptions.to);
   } catch (error) {
     console.error("\nError enviando el correo electronico:");
     console.log("-".repeat(50) + "\n", error);

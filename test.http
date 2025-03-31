@@ -1,47 +1,127 @@
-POST http://localhost:3000/api/register
+#Registro usuario1
+POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "byd333artex@gmail.com",
+  "email": "bydartex@gmail.com",
   "password": "12345689"
 }
 
-###
+###Verificacion usuario1
 POST http://localhost:3000/api/verification
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
 
 {
-  "code": 966017,
-  "email": "bydartex@gmail.com"
+  "email": "bydartex@gmail.com",
+  "code": "549817"
 }
 
-###
-POST http://localhost:3000/api/login
+###login usuario1
+POST http://localhost:3000/api/user/login
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
 
 {
   "email": "bydartex@gmail.com",
   "password": "12345689"
 }
-###
-PATCH http://localhost:3000/api/register
+###Completar info de usuario1
+PATCH http://localhost:3000/api/user/complete-info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+
+{
+  "name": "Nicolas",
+  "surname":"Graullera",
+  "nif":"1234567Z"
+}
+###Registro usuario2
+POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "bydartex@gmail.com",
-  "name": "Nicolas",
-  "surname": "Graullera",
-  "nif":"12345678"
+  "email": "usafan.dev@gmail.com",
+  "password": "12345689"
 }
 
-###
-PATCH http://localhost:3000/api/company
+###Verificacion usuario2
+POST http://localhost:3000/api/verification
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzNkOGZjZGExNzJjOGNjYTlkMTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4ODA5LCJleHAiOjE3NDM1MjUyMDl9.4irIJ06rWdfD_i3xXPLzT_6eDhm6Ui_UU5oR3CLraAY
+
+{
+  "email": "usafan.dev@gmail.com",
+  "code": "573264"
+}
+
+###Creacion de empresa usuario1
+PUT http://localhost:3000/api/company/create-company
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+
+{
+  "boss":"bydartex@gmail.com",
+  "company": {
+    "name": "Servitop, SL.",
+    "cif": "BXXXXXXXX",
+    "street": "Carlos V",
+    "number": 22,
+    "postal": "28936",
+    "city": "Móstoles",
+    "province": "Madrid"
+  }
+}
+
+###usuario2 agrega usuario a la empresa de usuario1, error
+PATCH http://localhost:3000/api/company/add-user-company
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzNkOGZjZGExNzJjOGNjYTlkMTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4ODA5LCJleHAiOjE3NDM1MjUyMDl9.4irIJ06rWdfD_i3xXPLzT_6eDhm6Ui_UU5oR3CLraAY
+
+{
+  "cif":"BXXXXXXXX",
+  "employees":["bydartex.dev@gmail.com"]
+}
+###usuario1 agrega usuario a la empresa de usuario1, correcto
+PATCH http://localhost:3000/api/company/add-user-company
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+
+{
+  "cif":"BXXXXXXXX",
+  "employees":["usafan.dev@gmail.com"]
+}
+
+###Logo usuario1
+POST http://localhost:3000/api/logo HTTP/1.1
+Content-Type: multipart/form-data; boundary=boundary123
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+
+--boundary123
+Content-Disposition: form-data; name="image"; filename="wp1892116-kimi-no-na-wa-wallpapers.png"
+Content-Type: image/png
+
+< ./wp1892116-kimi-no-na-wa-wallpapers.png
+--boundary123--
+
+###Get usuario1
+GET http://localhost:3000/api/user/me 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+
+
+###Get empresa usuario1, correcto
+GET http://localhost:3000/api/company/my-company?cif=BXXXXXXXX
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+
+###Get empresa usuario2, incorrecto
+GET http://localhost:3000/api/company/my-company?cif=BXXXXXXXX
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzNkOGZjZGExNzJjOGNjYTlkMTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4ODA5LCJleHAiOjE3NDM1MjUyMDl9.4irIJ06rWdfD_i3xXPLzT_6eDhm6Ui_UU5oR3CLraAY
 
 ###
-PATCH http://localhost:3000/api/logo
 
 
 
 
 
-###
+
+

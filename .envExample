@@ -1,3 +1,11 @@
 PORT=3000 #Puerto donde se ejecuta la aplicación
 DB_URI="mongodb+srv://<usuario>:<contraseña>@<cluster>/<base_de_datos>?<opciones>" #URL de conexión a mongo
 PUBLIC_URL="http://localhost:3000" #URL donde se ejecuta la aplicación
+
+EMAIL=email@gmail.com #Email desde donde se enviaran los codigos de verificacion
+REFRESH_TOKEN=123142143 //Refresh token OAuth Playground
+CLIENT_SECRET=23442423 //Client Secret OAuth 2.0
+CLIENT_ID=21312312 //Client id OAuth 2.0
+REDIRECT_URI=https://developers.google.com/oauthplayground
+
+JWT_SECRET="dafsfafdsafsadfafdase" //Clave para firmar los jwt tokens
