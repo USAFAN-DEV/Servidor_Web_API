@@ -10,17 +10,17 @@ Content-Type: application/json
 ###Verificacion usuario1
 POST http://localhost:3000/api/verification
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
 
 {
   "email": "bydartex@gmail.com",
-  "code": "549817"
+  "code": "102274"
 }
 
 ###login usuario1
 POST http://localhost:3000/api/user/login
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
 
 {
   "email": "bydartex@gmail.com",
@@ -29,7 +29,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyN
 ###Completar info de usuario1
 PATCH http://localhost:3000/api/user/complete-info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
 
 {
   "name": "Nicolas",
@@ -48,17 +48,17 @@ Content-Type: application/json
 ###Verificacion usuario2
 POST http://localhost:3000/api/verification
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzNkOGZjZGExNzJjOGNjYTlkMTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4ODA5LCJleHAiOjE3NDM1MjUyMDl9.4irIJ06rWdfD_i3xXPLzT_6eDhm6Ui_UU5oR3CLraAY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGRiM2I5YTI4NjU0MGYyNGI0MjgiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1NDI4LCJleHAiOjE3NDM1MzE4Mjh9._Gfno2-MmQVmofA5zuoxc5m51353wXh3g5v4GuHv9Io
 
 {
   "email": "usafan.dev@gmail.com",
-  "code": "573264"
+  "code": "316465"
 }
 
 ###Creacion de empresa usuario1
 PUT http://localhost:3000/api/company/create-company
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
 
 {
   "boss":"bydartex@gmail.com",
@@ -76,7 +76,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyN
 ###usuario2 agrega usuario a la empresa de usuario1, error
 PATCH http://localhost:3000/api/company/add-user-company
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzNkOGZjZGExNzJjOGNjYTlkMTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4ODA5LCJleHAiOjE3NDM1MjUyMDl9.4irIJ06rWdfD_i3xXPLzT_6eDhm6Ui_UU5oR3CLraAY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGRiM2I5YTI4NjU0MGYyNGI0MjgiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1NDI4LCJleHAiOjE3NDM1MzE4Mjh9._Gfno2-MmQVmofA5zuoxc5m51353wXh3g5v4GuHv9Io
 
 {
   "cif":"BXXXXXXXX",
@@ -85,7 +85,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzNkO
 ###usuario1 agrega usuario a la empresa de usuario1, correcto
 PATCH http://localhost:3000/api/company/add-user-company
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
 
 {
   "cif":"BXXXXXXXX",
@@ -95,7 +95,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyN
 ###Logo usuario1
 POST http://localhost:3000/api/logo HTTP/1.1
 Content-Type: multipart/form-data; boundary=boundary123
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
 
 --boundary123
 Content-Disposition: form-data; name="image"; filename="wp1892116-kimi-no-na-wa-wallpapers.png"
@@ -106,16 +106,16 @@ Content-Type: image/png
 
 ###Get usuario1
 GET http://localhost:3000/api/user/me 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
 
 
 ###Get empresa usuario1, correcto
 GET http://localhost:3000/api/company/my-company?cif=BXXXXXXXX
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzMyNzg4MDRjZGFlNzc2MjliZTkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4NjMyLCJleHAiOjE3NDM1MjUwMzJ9.kSuJuwqtA9JDb3D6uOtBGaguWslj2MYjZWM-JE1HG90
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
 
 ###Get empresa usuario2, incorrecto
 GET http://localhost:3000/api/company/my-company?cif=BXXXXXXXX
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhYzNkOGZjZGExNzJjOGNjYTlkMTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDM4ODA5LCJleHAiOjE3NDM1MjUyMDl9.4irIJ06rWdfD_i3xXPLzT_6eDhm6Ui_UU5oR3CLraAY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGRiM2I5YTI4NjU0MGYyNGI0MjgiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1NDI4LCJleHAiOjE3NDM1MzE4Mjh9._Gfno2-MmQVmofA5zuoxc5m51353wXh3g5v4GuHv9Io
 
 ###
 

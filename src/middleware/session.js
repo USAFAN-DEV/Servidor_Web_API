@@ -19,8 +19,14 @@ const authMiddleware = async (req, res, next) => {
     const data = verifyToken(token);
     if (data) {
       const user = await UserModel.findById(data._id);
-      req.user = user;
-      next();
+      if (!user) {
+        res.status(403).send("Error. El token JWT no es válido.");
+        console.error("\nError. El token JWT no es válido.");
+        console.log("-".repeat(50));
+      } else {
+        req.user = user;
+        next();
+      }
     } else {
       res.status(401).send("Error, el token JWT es incorrecto.");
       console.error("\nError. El token JTW es incorrecto.");

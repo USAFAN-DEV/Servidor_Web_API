@@ -14,7 +14,7 @@ userRouter.post("/register", registerValidator, createUser);
 
 userRouter.patch("/complete-info", completeInfoValidator, authMiddleware, completeUser);
 
-userRouter.post("/login", loginValidator, authMiddleware, loginUser);
+userRouter.post("/login", loginValidator, loginUser);
 
 userRouter.get("/me", authMiddleware, getUser);
 

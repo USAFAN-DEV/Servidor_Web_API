@@ -82,6 +82,7 @@ const getUser = async (req, res) => {
       return res.status(404).send("El usuario no existe en la base de datos.");
     }
 
+    user.set("password", undefined, { strict: false });
     console.log(`\nUsuario ${user.email} encontrado.`);
     console.log("-".repeat(50));
     res.status(200).json({ message: "Usuario encontrado", result: user });
@@ -149,11 +150,10 @@ const completeUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    const id = req.user._id;
     const body = matchedData(req);
 
     //Buscamos el usuario
-    const user = await userModel.findById(id);
+    const user = await userModel.findOne({ email: body.email });
 
     if (!user) {
       console.error(`\nError. No existe usuario con el correo ${body.email}.`);
@@ -184,6 +184,7 @@ const loginUser = async (req, res) => {
       return res.status(403).send("Error. El correo introducido es incorrecto");
     }
 
+    user.set("password", undefined, { strict: false });
     console.log(`\nInicio de sesion completado, bienvenido ${user?.name || "Usuario"}.`);
     console.log("-".repeat(50));
     return res.status(200).json({
