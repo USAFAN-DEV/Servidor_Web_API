@@ -12,9 +12,7 @@ const { tokenSign } = require("../utils/handleJWT.js");
  * para gestionar la verificación del usuario.
  *
  * @param {Object} req - Objeto de solicitud HTTP.
- *
  * @param {Object} req.body - Datos enviados en la solicitud.
- *
  * @param {string} req.body.email - Email del usuario.
  * @param {string} req.body.password - Contraseña del usuario.
  * Además, puede recibir otros valores opcionales
@@ -60,20 +58,23 @@ const createUser = async (req, res) => {
 };
 
 /**
- * Obtiene la información de un usuario existente en la base de datos.
+ * Obtiene la información del usuario autenticado en base al token JWT.
+ * La información incluye los datos del usuario y, si existe, su logo asociado.
  *
  * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.user - Información del usuario autenticado, extraída del token JWT.
  *
  * @param {Object} res - Objeto de respuesta HTTP.
  *
- * @returns {Promise<void>} - Devuelve un mensaje de éxito o un error.
- *
+ * @returns {Promise<void>} - Devuelve una respuesta HTTP con los datos del usuario o un error si no se encuentra.
  */
 
 const getUser = async (req, res) => {
   try {
+    //Obtenemos el id del usuario desde el objeto creado por authMiddleware
     const id = req.user._id;
-    const user = await userModel.findById(id).populate("logo_id");
+
+    const user = await userModel.findById(id).populate("logo_id"); //Poblamos el usuario con su logo
 
     if (!user) {
       console.error("\nError en GET /api/user. No se ha encontrado el usuario:");
@@ -92,21 +93,19 @@ const getUser = async (req, res) => {
 };
 
 /**
- * Completa la información de un usuario existente en la base de datos.
+ * Actualiza la información personal de un usuario autenticado en la base de datos.
+ * Se permite modificar el nombre, apellidos y NIF del usuario.
  *
  * @param {Object} req - Objeto de solicitud HTTP.
- *
+ * @param {Object} req.user - Información del usuario autenticado, extraída del token JWT.
  * @param {Object} req.body - Datos enviados en la solicitud.
- *
- * @param {string} req.body.email - Email del usuario.
- * @param {string} req.body.name - Nombre del usuario.
- * @param {string} req.body.surname - Apellidos del usuario.
- * @param {string} req.body.nif - NIF del usuario.
+ * @param {string} req.body.name - Nombre del usuario (opcional).
+ * @param {string} req.body.surname - Apellidos del usuario (opcional).
+ * @param {string} req.body.nif - NIF del usuario (opcional).
  *
  * @param {Object} res - Objeto de respuesta HTTP.
  *
- * @returns {Promise<void>} - Devuelve un mensaje de exito o o un error.
- *
+ * @returns {Promise<void>} - Devuelve una respuesta HTTP con el resultado de la actualización o un error si falla.
  */
 const completeUser = async (req, res) => {
   try {
@@ -126,7 +125,7 @@ const completeUser = async (req, res) => {
 
     console.log(`\nInformación del usuario actualizada.`);
     console.log("-".repeat(50));
-    res.status(204).json({ message: "Información actualizada", result: result });
+    res.status(200).json({ message: "Información actualizada", result: result });
   } catch (error) {
     console.error("\nError en PATCH /api/register. Error del servidor:");
     console.log("-".repeat(50) + "\n", error);
@@ -135,18 +134,17 @@ const completeUser = async (req, res) => {
 };
 
 /**
- * Login de un usuario. Comprueba los datos introducidos con los datos almacenados
+ * Inicia sesión de un usuario autenticado. Verifica el email, la contraseña y si la cuenta ha sido verificada.
  *
  * @param {Object} req - Objeto de solicitud HTTP.
- *
  * @param {Object} req.body - Datos enviados en la solicitud.
- *
  * @param {string} req.body.email - Email del usuario.
  * @param {string} req.body.password - Contraseña del usuario.
  *
  * @param {Object} res - Objeto de respuesta HTTP.
  *
- * @returns {Promise<Response>} - Devuelve una mensaje de éxito, una respuesta HTTP con la empresa creada o un error.
+ * @returns {Promise<Response>} - Devuelve un mensaje de éxito con el token de autenticación si el inicio de sesión es exitoso.
+ *                               - Devuelve un error si el usuario no existe, la cuenta no está verificada o la contraseña es incorrecta.
  */
 
 const loginUser = async (req, res) => {
@@ -188,7 +186,7 @@ const loginUser = async (req, res) => {
 
     console.log(`\nInicio de sesion completado, bienvenido ${user?.name || "Usuario"}.`);
     console.log("-".repeat(50));
-    return res.status(201).json({
+    return res.status(200).json({
       message: `Inicio de sesión completado. Bienvenido ${user?.name || "Usuario"}`,
       result: user,
       token: await tokenSign(user),

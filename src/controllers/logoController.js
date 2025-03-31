@@ -3,6 +3,21 @@ const LogoModel = require("../models/logoModel.js");
 const UserModel = require("../models/userModel.js");
 //Utils
 
+/**
+ * Crea un nuevo logo y lo asocia a un usuario en la base de datos.
+ *
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.user - Usuario autenticado que realiza la solicitud.
+ * @param {Object} req.file - Archivo de imagen cargado en la solicitud.
+ * @param {string} req.file.filename - Nombre del archivo cargado.
+ *
+ * @param {Object} res - Objeto de respuesta HTTP.
+ *
+ * @returns {Promise<Response>} - Devuelve una respuesta HTTP con el resultado de la operación:
+ *                                - 201 si el logo se crea y asocia correctamente al usuario.
+ *                                - 404 si el usuario no se encuentra.
+ *                                - 500 si ocurre un error en el servidor.
+ */
 const createItem = async (req, res) => {
   try {
     const id = req.user._id;

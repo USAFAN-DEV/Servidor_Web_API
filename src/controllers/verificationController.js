@@ -11,10 +11,6 @@ const { createUser } = require("./userController.js");
 const SUBJECT = "Codigo de verificacion";
 const FROM = "nicolasgraullera@gmail.com";
 
-//TODO Crear funcion de enviar correo
-//TODO Aunque el codigo este caducado, solo permitir generar uno nuevo si coincide con el que esta almacenado
-//TODO ERRORES CONSOLE.ERROR()
-
 /**
  * Función para bloquear al usuario después de superar el número máximo de intentos.
  * @param {string} email - El correo electrónico del usuario a bloquear.
@@ -91,10 +87,24 @@ const codeExpired = async (email) => {
 };
 
 /**
- * Función principal que maneja la verificación del usuario.
- * @param {Object} req - La solicitud HTTP.
- * @param {Object} res - La respuesta HTTP.
- * @throws {Error} Si ocurre un error durante el proceso de verificación del usuario.
+ * Verifica el usuario a partir del código de verificación enviado por correo electrónico.
+ * Si el usuario ya está verificado, bloqueado o el código es incorrecto o ha expirado, maneja cada caso adecuadamente.
+ *
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.body - Datos enviados en la solicitud.
+ * @param {string} req.body.email - Email del usuario a verificar.
+ * @param {string} req.body.code - Código de verificación enviado al usuario.
+ *
+ * @param {Object} res - Objeto de respuesta HTTP.
+ *
+ * @returns {Promise<Response>} - Devuelve una respuesta HTTP indicando el resultado de la verificación.
+ *                                - 200 si el usuario ha sido verificado o si se ha reenviado un código.
+ *                                - 400 si el código de verificación es incorrecto.
+ *                                - 404 si el usuario no existe.
+ *                                - 409 si el usuario ya estaba verificado.
+ *                                - 410 si el código ha expirado.
+ *                                - 423 si el usuario está bloqueado.
+ *                                - 500 si ocurre un error en el servidor.
  */
 const verifyUser = async (req, res) => {
   const { email, code } = matchedData(req);

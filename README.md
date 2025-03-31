@@ -1,6 +1,6 @@
 # Servidor_Web_API
 
-API REST para Servidor Web
+API REST para Servidor Web  
 Este proyecto implementa una API REST utilizando Node.js y Express. Está diseñado para ser una base para desarrollar aplicaciones web que necesiten interactuar con un servidor backend, permitiendo la gestión de recursos y datos de forma eficiente.
 
 ## 📄 Descripción
@@ -16,98 +16,132 @@ Esta API proporciona un conjunto de endpoints para realizar operaciones CRUD (Cr
 
 ### 🚀 Tecnologías utilizadas
 
-- Node.js: Plataforma de backend para ejecutar JavaScript.
-- Express: Framework minimalista para crear servidores web y APIs en Node.js.
-- JSON: Formato de intercambio de datos.
-- Mongoose: Librería para interactuar con bases de datos MongoDB.
+- **Node.js**: Plataforma de backend para ejecutar JavaScript.
+- **Express**: Framework minimalista para crear servidores web y APIs en Node.js.
+- **JSON**: Formato de intercambio de datos.
+- **Mongoose**: Librería para interactuar con bases de datos MongoDB.
 
 ## 🔧 Instalación
 
-Clona el repositorio:
+1. Clona el repositorio:
 
-```bash
-git clone https://github.com/tu-usuario/servidor-web-api.git
-cd servidor-web-api
-```
+   ```bash
+   git clone https://github.com/tu-usuario/servidor-web-api.git
+   cd servidor-web-api
+   ```
 
-Instala las dependencias:
+2. Instala las dependencias:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
-Configura el archivo .env (Ejemplo en .envExample). Puedes usar un archivo .env para configurar variables de entorno como las claves de API, puerto, etc.
+3. Configura el archivo `.env` (Ejemplo en `.envExample`).
 
-Ejecuta el servidor:
+4. Ejecuta el servidor:
 
-```bash
-npm start
-```
+   ```bash
+   npm start
+   ```
 
-📡 Endpoints
+## 📡 Endpoints
 
-1. GET /imagenes
-   Descripción: Obtiene todas las imágenes almacenadas en el servidor.
-   Respuesta:
-   json
-   Copiar
-   Editar
-   [
-   {
-   "id": 1,
-   "url": "/imagenes/imagen1.jpg"
-   },
-   {
-   "id": 2,
-   "url": "/imagenes/imagen2.png"
-   }
-   ]
-2. GET /imagenes/:id
-   Descripción: Obtiene una imagen específica por su id.
-   Parámetros: id (ID de la imagen).
-   Respuesta: La imagen solicitada será servida como archivo estático.
-3. POST /imagenes
-   Descripción: Permite subir una nueva imagen al servidor.
-   Cuerpo de la solicitud: La imagen debe enviarse como multipart/form-data.
-   Respuesta:
-   json
-   Copiar
-   Editar
-   {
-   "id": 3,
-   "url": "/imagenes/nueva_imagen.jpg"
-   }
-4. DELETE /imagenes/:id
-   Descripción: Elimina una imagen específica.
-   Parámetros: id (ID de la imagen).
-   Respuesta:
-   json
-   Copiar
-   Editar
-   {
-   "mensaje": "Imagen eliminada exitosamente"
-   }
-   📂 Estructura del Proyecto
-   bash
-   Copiar
-   Editar
-   /mi-proyecto
-   │── /src
-   │ ├── /storage # Carpeta donde se almacenan las imágenes
-   │ ├── server.js # Configuración principal del servidor
-   │── package.json # Dependencias y scripts del proyecto
-   │── .env # Variables de entorno (si es necesario)
-   🛠️ Uso de Archivos Estáticos
-   Se utiliza express.static para hacer que los archivos dentro de la carpeta /src/storage estén accesibles públicamente. Esto permite servir imágenes, archivos CSS, JS, y otros recursos estáticos.
+En el archivo `test.http` hay ejemplos de cada endpoint.
 
-javascript
-Copiar
-Editar
-app.use(express.static('src/storage'));
-📋 Requisitos
-Node.js: Versión 14 o superior.
-npm: El gestor de paquetes de Node.js.
-MongoDB (opcional, si tu proyecto usa bases de datos).
-📝 Notas
-Este proyecto está destinado como parte de la asignatura de Servidor Web y está orientado a la creación de una API REST básica.
-Puedes extender este proyecto para agregar más rutas o funcionalidad como autenticación de usuarios, base de datos, etc.
+### 1. User
+
+- **POST** `http://localhost:3000/api/user/register`
+
+  - Registra un nuevo usuario en la base de datos y crea un documento en `userverifications` para gestionar la verificación del usuario.
+  - **Responses**:
+    - `201`: Usuario creado.
+    - `409`: Email repetido.
+    - `500`: Error del servidor.
+
+- **POST** `http://localhost:3000/api/user/login`
+
+  - Inicia sesión de un usuario autenticado. Verifica que el email exista, la contraseña sea correcta y que la cuenta esté verificada.
+  - **Responses**:
+    - `200`: Inicio de sesión exitoso. Devuelve un token de autenticación.
+    - `401`: El usuario no ha verificado su email.
+    - `403`: Email o contraseña incorrectos.
+    - `404`: El usuario no existe.
+    - `500`: Error del servidor.
+
+- **GET** `http://localhost:3000/api/user/me`
+
+  - Obtiene la información del usuario autenticado en base al token JWT.
+  - La información incluye los datos del usuario y su logo (si existe).
+  - **Responses**:
+    - `200`: Usuario encontrado.
+    - `404`: El usuario no existe.
+    - `500`: Error del servidor.
+
+- **PATCH** `http://localhost:3000/api/user/complete-info`
+  - Actualiza la información personal del usuario autenticado (nombre, apellidos y NIF).
+  - Requiere autenticación con token JWT.
+  - **Responses**:
+    - `200`: Información actualizada correctamente.
+    - `404`: El usuario no existe.
+    - `500`: Error del servidor.
+
+### 2. Verificación
+
+- **POST** `http://localhost:3000/api/verification`
+  - Verifica un usuario mediante un código de verificación enviado por correo electrónico.
+  - Si el código es correcto, se marca el usuario como verificado.
+  - Si el código ha expirado o es incorrecto, se maneja el error adecuadamente.
+  - **Responses**:
+    - `200`: Usuario verificado correctamente o código reenviado si no había verificación previa.
+    - `400`: Código de verificación incorrecto.
+    - `404`: El usuario no existe en la base de datos.
+    - `409`: El usuario ya estaba verificado.
+    - `410`: El código ha expirado y se ha generado uno nuevo.
+    - `423`: El usuario está bloqueado por demasiados intentos fallidos.
+    - `500`: Error del servidor al intentar verificar el usuario.
+
+### 3. Company
+
+- **PUT** `http://localhost:3000/api/company/create-company`
+
+  - Crea una nueva empresa y la asocia a un jefe existente en la base de datos.
+  - **Responses**:
+    - `201`: Empresa creada con éxito.
+    - `404`: El jefe no existe en la base de datos.
+    - `409`: CIF repetido. La empresa ya está registrada.
+    - `500`: Error del servidor al crear la empresa.
+
+- **GET** `http://localhost:3000/api/company/my-company?cif=BXXXXXXXX`
+
+  - Obtiene la información de una empresa a partir de su CIF. Solo el jefe de la empresa puede acceder a esta información.
+  - **Parámetros**:
+    - `cif` (query param) → El CIF de la empresa a consultar.
+  - **Responses**:
+    - `200`: Empresa encontrada correctamente.
+    - `400`: Falta el CIF en la solicitud.
+    - `403`: Solo el jefe puede ver la empresa.
+    - `404`: La empresa o el usuario no existen en la base de datos.
+    - `500`: Error del servidor al buscar la empresa.
+
+- **PATCH** `http://localhost:3000/api/company/add-user-company`
+  - Añade empleados a una empresa existente en la base de datos. Solo el jefe de la empresa puede realizar esta acción.
+  - **Responses**:
+    - `200`: Empleados añadidos correctamente.
+    - `200`: Todos los empleados ya estaban registrados en la empresa.
+    - `403`: Solo el jefe puede añadir empleados.
+    - `404`: La empresa no existe.
+    - `404`: Algunos usuarios no existen en la base de datos.
+    - `500`: Error del servidor al añadir empleados.
+
+### 4. Logo
+
+- **POST** `http://localhost:3000/api/logo`
+  - Crea un nuevo logo y lo asocia a un usuario autenticado.
+  - **Body** (multipart/form-data):
+    - `file` (archivo) → Imagen del logo a cargar.
+  - **Responses**:
+    - `201`: Logo creado y asociado al usuario correctamente.
+    - `404`: No se ha podido añadir el logo al usuario.
+    - `500`: Error del servidor al registrar el logo.
+
+#### También aparecen los errores **403** o **401** si hay problemas de autenticación (`/middleware/session.js`).

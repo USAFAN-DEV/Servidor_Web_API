@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-//const mongooseDelete = require("mongoose-delete");
 
 /**
  * Esquema de Mongoose para el modelo de Company.
@@ -35,5 +34,4 @@ const CompanySchema = new mongoose.Schema(
   { timestamps: true, versionKey: false }
 );
 
-//UserSchema.plugin(mongooseDelete, { overrideMethods: "all" });
 module.exports = mongoose.model("companies", CompanySchema);

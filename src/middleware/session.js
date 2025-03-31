@@ -1,6 +1,14 @@
 const { verifyToken } = require("../utils/handleJWT");
 const UserModel = require("../models/userModel.js");
 
+/**
+ * Middleware de autenticación para proteger rutas mediante JWT.
+ *
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * @param {Function} next - Función para continuar con la siguiente capa de middleware.
+ * @returns {void} - Responde con un error si la autenticación falla.
+ */
 const authMiddleware = async (req, res, next) => {
   if (!req.headers.authorization) {
     res.status(403).send("Error, no cuentas con la autorización requerida.");
@@ -12,7 +20,6 @@ const authMiddleware = async (req, res, next) => {
     if (data) {
       const user = await UserModel.findById(data._id);
       req.user = user;
-      //?console.log(req.user);
       next();
     } else {
       res.status(401).send("Error, el token JWT es incorrecto.");

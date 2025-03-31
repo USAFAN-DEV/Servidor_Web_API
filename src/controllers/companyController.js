@@ -3,19 +3,20 @@ const CompanyModel = require("../models/companyModel.js");
 const UserModel = require("../models/userModel.js");
 
 /**
- * Registra un usuario en una empresa en la base de datos. Si la empresa no está creada, la crea y añade el usuario.
- * Si está creada, simplemente lo añade
+ * Crea una empresa en la base de datos y la asocia a un jefe existente.
  *
  * @param {Object} req - Objeto de solicitud HTTP.
- *
  * @param {Object} req.body - Datos enviados en la solicitud.
- *
- * @param {string} req.body.email - Email del usuario.
- * @param {string} req.body.company - Objeto con la información de la empresa. (/models/companyModel.js para mas info)
+ * @param {string} req.body.boss - Email del usuario que será asignado como jefe de la empresa.
+ * @param {Object} req.body.company - Objeto con la información de la empresa. (Ver `models/companyModel.js` para más detalles).
  *
  * @param {Object} res - Objeto de respuesta HTTP.
  *
- * @returns {Promise<Response>} - Devuelve una mensaje de éxito, una respuesta HTTP con la empresa creada o un error.
+ * @returns {Promise<Response>} - Devuelve una respuesta HTTP con la empresa creada o un error:
+ *                                - 201 si la empresa se creó con éxito.
+ *                                - 404 si el jefe no existe en la base de datos.
+ *                                - 409 si el CIF de la empresa ya está registrado.
+ *                                - 500 si ocurre un error en el servidor.
  */
 
 const createCompany = async (req, res) => {
@@ -51,21 +52,19 @@ const createCompany = async (req, res) => {
  * Añade empleados a una empresa existente en la base de datos.
  *
  * @param {Object} req - Objeto de solicitud HTTP.
- *
  * @param {Object} req.body - Datos enviados en la solicitud.
- * @param {string} req.body.cif - CIF de la empresa a la que se añadirá el usuario.
- * @param {Array<string>} req.body.employees - Lista de emails de los empleados a añadir.
+ * @param {string} req.body.cif - CIF de la empresa a la que se añadirán los empleados.
+ * @param {Array<string>} req.body.employees - Lista de correos electrónicos de los empleados a añadir.
  *
  * @param {Object} res - Objeto de respuesta HTTP.
  *
- * @returns {Promise<Response>} - Devuelve un mensaje de éxito si los empleados se añaden correctamente,
- * un mensaje de error si la empresa no existe o si hay un problema con la base de datos.
- *
- * @throws {Error} - Captura y maneja errores en la base de datos o en la lógica de validación.
- *
- * @todo Validar que los empleados existen antes de añadirlos a la empresa.
- * @todo Evitar agregar empleados duplicados sin necesidad de recorrer la lista manualmente.
- * @todo Mejorar la respuesta del servidor con una lista de empleados añadidos y los que ya estaban.
+ * @returns {Promise<Response>} - Devuelve una respuesta HTTP con el resultado de la operación:
+ *                                - 200 si los empleados fueron añadidos correctamente.
+ *                                - 200 si todos los empleados ya estaban registrados en la empresa.
+ *                                - 403 si el usuario que hace la solicitud no es el jefe de la empresa.
+ *                                - 404 si la empresa no existe en la base de datos.
+ *                                - 404 si algunos empleados no existen en la base de datos.
+ *                                - 500 si ocurre un error en el servidor.
  */
 const addUserToCompany = async (req, res) => {
   try {
@@ -123,14 +122,20 @@ const addUserToCompany = async (req, res) => {
 };
 
 /**
- * Obtiene la información de un usuario existente en la base de datos.
+ * Obtiene la información de una empresa existente en la base de datos a partir de su CIF.
  *
  * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} req.query - Parámetros de la solicitud.
+ * @param {string} req.query.cif - CIF de la empresa a consultar.
  *
  * @param {Object} res - Objeto de respuesta HTTP.
  *
- * @returns {Promise<void>} - Devuelve un mensaje de éxito o un error.
- *
+ * @returns {Promise<Response>} - Devuelve una respuesta HTTP con el resultado de la operación:
+ *                                - 200 si la empresa es encontrada y el usuario tiene permisos.
+ *                                - 400 si no se proporciona un CIF en la solicitud.
+ *                                - 403 si el usuario no es el jefe de la empresa.
+ *                                - 404 si la empresa o el usuario no existen en la base de datos.
+ *                                - 500 si ocurre un error en el servidor.
  */
 
 const getCompany = async (req, res) => {

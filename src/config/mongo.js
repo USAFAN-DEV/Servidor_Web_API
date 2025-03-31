@@ -1,8 +1,14 @@
 const mongoose = require("mongoose"); //Para trabajar con mongo
 
 /**
- * Establece la conexión a la base de datos usando Mongoose.
- * @returns {Promise<void>} - No devuelve un valor explícito, pero maneja la conexión a la base de datos.
+ * Conecta la aplicación a la base de datos utilizando Mongoose.
+ *
+ * - Verifica la existencia de `DB_URI` en las variables de entorno.
+ * - Configura Mongoose para deshabilitar `strictQuery`.
+ * - Establece un evento para notificar cuando la conexión se haya realizado con éxito.
+ * - Maneja errores en caso de que la conexión falle.
+ *
+ * @returns {Promise<void>} - No devuelve un valor explícito, pero establece la conexión a la base de datos.
  */
 const dbConnect = async () => {
   //Obtenemos la db_uri
