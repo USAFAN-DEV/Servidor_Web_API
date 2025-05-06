@@ -1,11 +1,26 @@
-PORT=3000 #Puerto donde se ejecuta la aplicación
-DB_URI="mongodb+srv://<usuario>:<contraseña>@<cluster>/<base_de_datos>?<opciones>" #URL de conexión a mongo
-PUBLIC_URL="http://localhost:3000" #URL donde se ejecuta la aplicación
+# Database URIs
+DB_URI="YOUR_MONGO_DB_URI_HERE"
+DB_URI_TEST="YOUR_MONGO_DB_URI_TEST_HERE"
 
-EMAIL=email@gmail.com #Email desde donde se enviaran los codigos de verificacion
-REFRESH_TOKEN=123142143 //Refresh token OAuth Playground
-CLIENT_SECRET=23442423 //Client Secret OAuth 2.0
-CLIENT_ID=21312312 //Client id OAuth 2.0
-REDIRECT_URI=https://developers.google.com/oauthplayground
+# Public URL
+PUBLIC_URL="http://localhost:3000"
 
-JWT_SECRET="dafsfafdsafsadfafdase" //Clave para firmar los jwt tokens
+# Email settings
+EMAIL="YOUR_EMAIL_HERE"
+
+# Google OAuth Credentials
+REFRESH_TOKEN="YOUR_GOOGLE_REFRESH_TOKEN_HERE"
+CLIENT_SECRET="YOUR_GOOGLE_CLIENT_SECRET_HERE"
+CLIENT_ID="YOUR_GOOGLE_CLIENT_ID_HERE"
+REDIRECT_URI="YOUR_GOOGLE_REDIRECT_URI_HERE"
+
+# JWT Secret
+JWT_SECRET="YOUR_JWT_SECRET_HERE"
+
+# Pinata API keys
+PINATA_KEY="YOUR_PINATA_KEY_HERE"
+PINATA_SECRET="YOUR_PINATA_SECRET_HERE"
+PINATA_GATEWAY_URL="YOUR_PINATA_GATEWAY_URL_HERE"
+
+# Node Environment
+NODE_ENV="test"
