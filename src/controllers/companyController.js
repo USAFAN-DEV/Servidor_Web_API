@@ -142,7 +142,7 @@ const getCompany = async (req, res) => {
   try {
     const { cif } = req.query; // Obtener 'cif' desde query params
     if (!cif) {
-      return res.status(400).json({ message: "Error. Introduzca el CIF de la empresa." });
+      return res.status(400).send("Error. Introduzca el CIF de la empresa.");
     }
 
     const id = req.user._id;
@@ -155,11 +155,13 @@ const getCompany = async (req, res) => {
       return res.status(404).send("La empresa no existe en la base de datos.");
     }
 
+    /*
+    !No es necesario
     if (!user) {
       console.error("\nError en GET /api/company. El usuario no existe.");
       console.log("-".repeat(50));
       return res.status(404).send("El usuario no existe en la base de datos.");
-    }
+    }*/
 
     if (user.email !== company.boss) {
       console.error("\nError en GET /api/company. Solo el jefe puede ver la empresa.");

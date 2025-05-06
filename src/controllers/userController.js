@@ -33,11 +33,12 @@ const createUser = async (req, res) => {
     result.set("password", undefined, { strict: false }); //Si no queremos que se muestre el hash en la respuesta
 
     //Creamos el userVerification
-    await createUserVerification(body.email);
+    const code = await createUserVerification(body.email);
 
     const data = {
       token: await tokenSign(result),
       result,
+      code,
     };
 
     console.log(`\nUsuario ${body.email} creado.`);
@@ -76,16 +77,18 @@ const getUser = async (req, res) => {
 
     const user = await userModel.findById(id).populate("logo_id"); //Poblamos el usuario con su logo
 
+    /*
+    !No es necesario
     if (!user) {
       console.error("\nError en GET /api/user. No se ha encontrado el usuario:");
       console.log("-".repeat(50));
       return res.status(404).send("El usuario no existe en la base de datos.");
-    }
+    }*/
 
     user.set("password", undefined, { strict: false });
     console.log(`\nUsuario ${user.email} encontrado.`);
     console.log("-".repeat(50));
-    res.status(200).json({ message: "Usuario encontrado", result: user });
+    res.status(200).json({ message: "Usuario encontrado.", result: user });
   } catch (error) {
     console.error("\nError en GET /api/user. Error del servidor:");
     console.log("-".repeat(50) + "\n", error);
@@ -118,11 +121,13 @@ const completeUser = async (req, res) => {
       { $set: { name: body.name, surname: body.surname, nif: body.nif } }
     );
 
+    /*
+    !No es necesario
     if (result.matchedCount == 0) {
       console.error("\nError en PATCH /api/register. No se ha encontrado el usuario");
       console.log("-".repeat(50));
       return res.status(404).send("El usuario no existe en la base de datos.");
-    }
+    }*/
 
     console.log(`\nInformación del usuario actualizada.`);
     console.log("-".repeat(50));
@@ -178,11 +183,13 @@ const loginUser = async (req, res) => {
       return res.status(403).send("Error. La contraseña introducida es incorrecta");
     }
 
+    /*
+    !No es necesario
     if (!(body.email === user.email)) {
       console.log(`\nError. Correo incorrecto.`);
       console.log("-".repeat(50));
       return res.status(403).send("Error. El correo introducido es incorrecto");
-    }
+    } */
 
     user.set("password", undefined, { strict: false });
     console.log(`\nInicio de sesion completado, bienvenido ${user?.name || "Usuario"}.`);

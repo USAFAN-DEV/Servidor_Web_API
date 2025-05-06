@@ -11,9 +11,9 @@ const UserModel = require("../models/userModel.js");
  */
 const authMiddleware = async (req, res, next) => {
   if (!req.headers.authorization) {
-    res.status(403).send("Error, no cuentas con la autorización requerida.");
     console.error("\nError. Se requiere de un token JWT.");
     console.log("-".repeat(50));
+    return res.status(403).send("Error, no cuentas con la autorización requerida.");
   } else {
     const token = req.headers.authorization.match(/Bearer\s(\S+)/)[1];
     const data = verifyToken(token);

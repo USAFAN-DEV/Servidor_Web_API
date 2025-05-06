@@ -1,0 +1,65 @@
+#Registro usuario1
+POST http://localhost:3000/api/user/register
+Content-Type: application/json
+
+{
+  "email": "bydartex@gmail.com",
+  "password": "12345689"
+}
+
+###Verificacion usuario1
+POST http://localhost:3000/api/verification
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE2ODAxYWM2YmQ0YzIwNDRjMmUzMDIiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MzA1MDUxLCJleHAiOjE3NDYzOTE0NTF9.87Xf2lKgBRFB-yYBqL_h0BlfcD6PjELw0QXXGb_WFoY
+
+{
+  "email": "bydartex@gmail.com",
+  "code": "102299"
+}
+
+###login usuario1
+POST http://localhost:3000/api/user/login
+Content-Type: application/json
+
+{
+  "email": "bydartex@gmail.com",
+  "password": "12345689"
+}
+
+###
+POST http://localhost:3000/api/client
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE2ODAxYWM2YmQ0YzIwNDRjMmUzMDIiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MzA1MDUxLCJleHAiOjE3NDYzOTE0NTF9.87Xf2lKgBRFB-yYBqL_h0BlfcD6PjELw0QXXGb_WFoY
+
+{
+  "cif": "D52921210"
+}
+
+###
+POST http://localhost:3000/api/project
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE2ODAxYWM2YmQ0YzIwNDRjMmUzMDIiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MzA1MDUxLCJleHAiOjE3NDYzOTE0NTF9.87Xf2lKgBRFB-yYBqL_h0BlfcD6PjELw0QXXGb_WFoY
+
+{
+  "client_id": "68168045c6bd4c2044c2e30e",
+  "projectCode": "D52921210"
+}
+
+### 
+POST http://localhost:3000/api/deliveryNote
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE2ODAxYWM2YmQ0YzIwNDRjMmUzMDIiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MzA1MDUxLCJleHAiOjE3NDYzOTE0NTF9.87Xf2lKgBRFB-yYBqL_h0BlfcD6PjELw0QXXGb_WFoY
+
+{
+    "project_id": "681680b23aa6fdd8900b06d7",
+    "client_id": "68168045c6bd4c2044c2e30e",
+    "format": "mixed",
+    "entries": [
+        { "person": "Luis", "hours": 3 },
+        { "material": "Tornillos", "quantity": 50 }
+    ]
+}
+
+###
+GET http://localhost:3000/api/deliveryNote/pdf/6816813e6a6137a73937662d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE2ODAxYWM2YmQ0YzIwNDRjMmUzMDIiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MzA1MDUxLCJleHAiOjE3NDYzOTE0NTF9.87Xf2lKgBRFB-yYBqL_h0BlfcD6PjELw0QXXGb_WFoY

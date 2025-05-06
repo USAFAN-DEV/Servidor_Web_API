@@ -66,4 +66,4 @@ const send = async (emailOptions) => {
   }
 };
 
-module.exports = send;
+module.exports = { send };

@@ -3,24 +3,24 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-  "email": "bydartex@gmail.com",
+  "email": "usafan.dev@gmail.com",
   "password": "12345689"
 }
 
 ###Verificacion usuario1
 POST http://localhost:3000/api/verification
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE3MjNkZTAxODQxOWNmZDAyODQzNjAiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MzQ2OTc1LCJleHAiOjE3NDY0MzMzNzV9.64RoSpaBunLV2PcG8LGMHo7vZ4kGQ6ZlvFazp1M1MFA
 
 {
-  "email": "bydartex@gmail.com",
-  "code": "102274"
+  "email": "bydatex@gmail.com",
+  "code": "219120"
 }
 
 ###login usuario1
 POST http://localhost:3000/api/user/login
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE1Yzg2MGVjMjA0NWFkMjYxNDZjMTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjU4MDE3LCJleHAiOjE3NDYzNDQ0MTd9.22wEIov2ToTW8jbfrn_sbtYR-gam8iLK0RK7P6s0PJA
 
 {
   "email": "bydartex@gmail.com",
@@ -29,7 +29,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZ
 ###Completar info de usuario1
 PATCH http://localhost:3000/api/user/complete-info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE1Yzg2MGVjMjA0NWFkMjYxNDZjMTQiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2MjU4MDE3LCJleHAiOjE3NDYzNDQ0MTd9.22wEIov2ToTW8jbfrn_sbtYR-gam8iLK0RK7P6s0PJA
 
 {
   "name": "Nicolas",
@@ -95,7 +95,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZ
 ###Logo usuario1
 POST http://localhost:3000/api/logo HTTP/1.1
 Content-Type: multipart/form-data; boundary=boundary123
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VhZGNlZDhjZmY5ZDE3NTQ5YWQxNjkiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQzNDQ1MjMwLCJleHAiOjE3NDM1MzE2MzB9.1towpn4mwT0fO1XbBygsV1UP9CaT6a3TabnzURt0kXI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhMmVjNWE4ZDA5MDhmNWE2ZDBhZTciLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NTQ2Mzc0LCJleHAiOjE3NDY2MzI3NzR9.JUlqExFf0H8xg6mCBE4On8s4AVbuUysvg7dpnojW4Js
 
 --boundary123
 Content-Disposition: form-data; name="image"; filename="wp1892116-kimi-no-na-wa-wallpapers.png"

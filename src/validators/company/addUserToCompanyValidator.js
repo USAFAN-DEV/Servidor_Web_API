@@ -7,7 +7,7 @@ const validateResults = require("../../utils/handleValidator");
  * @type {Array} validatorCreateItem - Un arreglo de validaciones y un middleware para verificar los datos de la solicitud.
  */
 const validatorCreateItem = [
-  check("employees").optional().isArray().withMessage("Error. 'employees' debe ser un array."),
+  check("employees").exists().isArray().withMessage("Error. 'employees' debe ser un array."),
 
   check("cif")
     .exists()

@@ -12,7 +12,7 @@ const mongoose = require("mongoose"); //Para trabajar con mongo
  */
 const dbConnect = async () => {
   //Obtenemos la db_uri
-  const db_uri = process.env.DB_URI;
+  const db_uri = process.env.NODE_ENV === "test" ? process.env.DB_URI_TEST : process.env.DB_URI; //Para pruebas usamos una base de datos diferente
   if (!db_uri) {
     console.error("\nError: DB_URI no esta definida. Revisa el .env");
     console.log("-".repeat(50));

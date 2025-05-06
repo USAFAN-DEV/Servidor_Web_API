@@ -1,0 +1,87 @@
+#Registro usuario1
+POST http://localhost:3000/api/user/register
+Content-Type: application/json
+
+{
+  "email": "usafan.dev@gmail.com",
+  "password": "12345689"
+}
+### Crear cliente
+POST http://localhost:3000/api/client
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhM2I5YTU0NTgwMDA3MGZhZDNjMjEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NTQ5NjU5LCJleHAiOjE3NDY2MzYwNTl9.iqYD8QAtAYhWJHaFn2sE7YISrSk2wy9wA9hhFdGAz4Q
+
+{
+  "name": "ACS",
+  "cif": "D52921210"
+}
+
+### Crear proyecto
+POST http://localhost:3000/api/project
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhM2I5YTU0NTgwMDA3MGZhZDNjMjEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NTQ5NjU5LCJleHAiOjE3NDY2MzYwNTl9.iqYD8QAtAYhWJHaFn2sE7YISrSk2wy9wA9hhFdGAz4Q
+
+{
+  "projectCode": "PROJ001",
+  "client_id": "681a3bc0545800070fad3c27"
+}
+
+### 1. Crear albarán
+POST http://localhost:3000/api/deliverynote
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhM2I5YTU0NTgwMDA3MGZhZDNjMjEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NTQ5NjU5LCJleHAiOjE3NDY2MzYwNTl9.iqYD8QAtAYhWJHaFn2sE7YISrSk2wy9wA9hhFdGAz4Q
+Content-Type: application/json
+
+{
+  "client_id": "681a3bc0545800070fad3c27",
+  "project_id": "681a3bca545800070fad3c2b",
+  "format": "hours",
+  "entries": [
+    {
+      "person": "Juan Pérez",
+      "hours": 5
+    },
+    {
+      "person": "Laura Díaz",
+      "hours": 3
+    }
+  ]
+}
+
+###
+
+### 2. Obtener todos los albaranes del usuario
+GET http://localhost:3000/api/deliverynote
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhM2I5YTU0NTgwMDA3MGZhZDNjMjEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NTQ5NjU5LCJleHAiOjE3NDY2MzYwNTl9.iqYD8QAtAYhWJHaFn2sE7YISrSk2wy9wA9hhFdGAz4Q
+
+###
+
+### 3. Obtener un albarán por ID
+GET http://localhost:3000/api/deliverynote/681a3e92853e7ec1680d3d76
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhM2I5YTU0NTgwMDA3MGZhZDNjMjEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NTQ5NjU5LCJleHAiOjE3NDY2MzYwNTl9.iqYD8QAtAYhWJHaFn2sE7YISrSk2wy9wA9hhFdGAz4Q
+
+###
+
+### 4. Descargar/generar el PDF de un albarán
+GET http://localhost:3000/api/deliverynote/pdf/681a3bd3545800070fad3c2e
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhM2I5YTU0NTgwMDA3MGZhZDNjMjEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NTQ5NjU5LCJleHAiOjE3NDY2MzYwNTl9.iqYD8QAtAYhWJHaFn2sE7YISrSk2wy9wA9hhFdGAz4Q
+
+###
+
+### 5. Firmar un albarán (subir firma como imagen)
+POST http://localhost:3000/api/deliverynote/sign/681a3e92853e7ec1680d3d76
+Content-Type: multipart/form-data; boundary=boundary123
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhM2I5YTU0NTgwMDA3MGZhZDNjMjEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NTQ5NjU5LCJleHAiOjE3NDY2MzYwNTl9.iqYD8QAtAYhWJHaFn2sE7YISrSk2wy9wA9hhFdGAz4Q
+
+--boundary123
+Content-Disposition: form-data; name="signature"; filename="firma.png"
+Content-Type: image/png
+
+< ./firma.png
+--boundary123--
+
+###
+
+### 6. Borrar un albarán (solo si no está firmado)
+DELETE http://localhost:3000/api/deliverynote/681a3e92853e7ec1680d3d76
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFhM2I5YTU0NTgwMDA3MGZhZDNjMjEiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NTQ5NjU5LCJleHAiOjE3NDY2MzYwNTl9.iqYD8QAtAYhWJHaFn2sE7YISrSk2wy9wA9hhFdGAz4Q
+

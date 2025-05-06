@@ -1,0 +1,41 @@
+POST http://localhost:3000/api/user/register
+Content-Type: application/json
+
+{
+  "email": "bydartex@gmail.com",
+  "password": "12345689"
+}
+###
+POST http://localhost:3000/api/client
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE4ZTBjZDhlNDdmNDkyYTQzM2E5OWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NDYwODc4LCJleHAiOjE3NDY1NDcyNzh9.U1kfWdwMvarPo1ml-IBeP5sPLS0WYWMDH4qhijihKRM
+
+{
+  "name": "ACS",
+  "cif": "D52921210",
+  "address": {
+    "street": "Carlos V",
+    "number": 22,
+    "postal": "28936",
+    "city": "Móstoles",
+    "province": "Madrid"
+  }
+}
+
+###
+GET http://localhost:3000/api/client
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE4ZTBjZDhlNDdmNDkyYTQzM2E5OWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NDYwODc4LCJleHAiOjE3NDY1NDcyNzh9.U1kfWdwMvarPo1ml-IBeP5sPLS0WYWMDH4qhijihKRM
+
+###
+PATCH http://localhost:3000/api/client/6818e15b84b85d24eded3aad
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE4ZTBjZDhlNDdmNDkyYTQzM2E5OWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NDYwODc4LCJleHAiOjE3NDY1NDcyNzh9.U1kfWdwMvarPo1ml-IBeP5sPLS0WYWMDH4qhijihKRM
+###
+GET http://localhost:3000/api/client/archived/list
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE4ZTBjZDhlNDdmNDkyYTQzM2E5OWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NDYwODc4LCJleHAiOjE3NDY1NDcyNzh9.U1kfWdwMvarPo1ml-IBeP5sPLS0WYWMDH4qhijihKRM
+###
+PATCH http://localhost:3000/api/client/restore/6818e15b84b85d24eded3aad
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE4ZTBjZDhlNDdmNDkyYTQzM2E5OWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NDYwODc4LCJleHAiOjE3NDY1NDcyNzh9.U1kfWdwMvarPo1ml-IBeP5sPLS0WYWMDH4qhijihKRM
+###
+DELETE http://localhost:3000/api/client/6818e15b84b85d24eded3aad
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODE4ZTBjZDhlNDdmNDkyYTQzM2E5OWYiLCJyb2xlIjpbInVzZXIiXSwiaWF0IjoxNzQ2NDYwODc4LCJleHAiOjE3NDY1NDcyNzh9.U1kfWdwMvarPo1ml-IBeP5sPLS0WYWMDH4qhijihKRM
+###

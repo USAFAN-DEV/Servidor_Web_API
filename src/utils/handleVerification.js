@@ -1,7 +1,7 @@
 //Modelos
 const userVerificationModel = require("../models/verificationModel.js");
 //Utils
-const send = require("../utils/handleEmail.js");
+const { send } = require("../utils/handleEmail.js");
 const generateVerificationCode = require("../utils/handleCode.js");
 //Constantes
 const SUBJECT = "Codigo de verificacion";
@@ -35,8 +35,7 @@ const createUserVerification = async (email) => {
       from: FROM,
     };
     await send(emailOptions);
-
-    //console.log(`\nCorreo enviado a ${data.email}. Código de verificación: ${code}`);
+    return code; //Para poder hacer tests
   } catch (error) {
     console.error("\nError creando documento userVerification:");
     console.log("-".repeat(50) + "\n", error);

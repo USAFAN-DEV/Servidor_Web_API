@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors"); //Para admitir peticiones de cualquier origen
 const env = require("dotenv"); //Para utilizar las variables de entorno
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpecs = require("./docs/swagger");
 
 //Obtenemos las variables de entorno
 env.config();
@@ -21,6 +23,10 @@ app.use((err, req, res, next) => {
   next();
 });
 
+//Swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+app.use("/api", require("../src/routes"));
+
 //Conexion a la base de datos
 const dbConnect = require("./config/mongo.js");
 dbConnect();
@@ -30,7 +36,9 @@ const router = require("./routes/index.js");
 app.use("/api", router);
 
 //Arranque de la app
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`\nServidor corriendo en el puerto --> ${port}`);
   console.log("-".repeat(50));
 });
+
+module.exports = { app, server };
